@@ -23,7 +23,7 @@ describe('SongQueueView', function() {
     expect(SongQueueEntryView.prototype.render).to.have.been.called;
   });
 
-  it('renders when add or remove event fires from the song queue collection', function() {
+  it('renders when add event fires from the song queue collection', function() {
     sinon.spy(SongQueueView.prototype, 'render');
     view = new SongQueueView({collection: fakeSongs});
     view.collection.add({
@@ -31,7 +31,19 @@ describe('SongQueueView', function() {
       url: '/test/testsong3.mp3',
       title: 'test song 3'
     });
-    view.collection.pop();
+    expect(view.render).to.have.been.called;
+  });
+
+
+  it('renders when remove event fires form the song queue collection', function() {
+    console.log(view.collection);
+    view = new SongQueueView({collection: fakeSongs});
+    view.collection.remove({
+      artist: 'data',
+      url: '/test/testsong.mp3',
+      title: 'test song'
+    });
+
     expect(view.render).to.have.been.called;
   });
 

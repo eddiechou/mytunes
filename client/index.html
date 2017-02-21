@@ -8,6 +8,7 @@
     <script src="bower_components/backbone/backbone.js"></script>
 
     <script src="data/data.js"></script>
+    <script src="env/config.js"></script>
 
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
@@ -22,19 +23,51 @@
     <script src="views/AppView.js"></script>
 
     <script>
+      var server = 'http://parse.sfm6.hackreactor.com/mytunes/classes/songs';
       $(function() {
         // set up model objects
-        var library = new Songs(songData);
-        console.log(library);
+
+
+        var library = new Songs();
+
         var app = new AppModel({library: library});
 
-
-        // build a view for the top level of the whole app
         var appView = new AppView({model: app});
 
-        // put the view onto the screen
-        $('body').append(appView.render());
+
+        //   // build a view for the top level of the whole app
+        //     var appView = new AppView({model: app});
+
+
+        // $.ajax({
+        //   url: server,
+        //   type: 'GET',
+        //   contentType: 'application/json',
+        //   success: function(data) {
+        //     console.log('data is received!', data.results);
+        //     var library = new Songs(data.results);
+        //     // console.log(library);
+        //     var app = new AppModel({library: library});
+
+
+        //   // build a view for the top level of the whole app
+        //     var appView = new AppView({model: app});
+
+        //   // put the view onto the screen
+        //     $('body').append(appView.render());
+        //   },
+        //   error: function() {
+        //     console.log('Cannot reach server!');
+        //   }
+        // });
+      // Get songs from PARSE
+
+      // make Songs from songs
+
+      // make library from Songs
+
+
       });
-    </script>
-  </body>
+  </script>
+</body>
 </html>
