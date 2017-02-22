@@ -66,6 +66,19 @@ describe('SongQueue', function() {
     });
   });
 
+  describe('when a song that is not playing is dequeued', function() {
+    it('the current song is still playing', function() {
+      removeSpy = sinon.spy(SongQueue.prototype, 'remove');
+      var songQueue = new SongQueue(songData1);
+      songQueue.add(songData2);
+      var song1 = songQueue.at(0);
+      songQueue.at(1).dequeue();
+      expect(removeSpy).to.have.been.called;
+      expect(songQueue.at(0)).to.be.equal(song1);
+      SongQueue.prototype.remove.restore();
+    });
+  });
+
   describe('playFirst', function() {
     it('plays the first song in the queue', function() {
       sinon.spy(SongModel.prototype, 'play');

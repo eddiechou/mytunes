@@ -18,10 +18,23 @@ var SongQueue = Backbone.Collection.extend({
     }, this);
 
     this.on('dequeue', function(song) {
-      this.remove(song);
+      if (this.at(0) === song) {
+        this.playNext();
+      } else {
+        this.remove(song);
+      }
     }, this);
   },
   playFirst: function() {
     this.models[0].play();
+  },
+
+  playNext: function() {
+    this.shift();
+    if (this.length > 0) {
+      this.playFirst();
+    }
   }
+
+
 });

@@ -13,12 +13,11 @@ var AppView = Backbone.View.extend({
       this.playerView.setSong(model.get('currentSong'));
     }, this);
 
-    // this.model.on('ended', function() {
-      
-    // }, this);
-    console.log(this.model);
+    this.model.on('fetch', function() {
+      this.render();
+    }, this);
+
     this.model.on('add', function() {
-      console.log('hellur');
       this.render();
     }, this);
   },

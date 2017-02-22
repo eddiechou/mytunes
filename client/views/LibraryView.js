@@ -1,14 +1,17 @@
 // LibraryView.js - Defines a backbone view class for the music library.
 var LibraryView = Backbone.View.extend({
+  collection: Songs,
 
   tagName: 'table',
 
   initialize: function() {
     this.render();
 
-    this.on('fetch', function() {
+    this.collection.on('fetch', function() {
+
+      console.log('inFetch');
       this.render();
-    });
+    }, this);
   },
 
   render: function() {

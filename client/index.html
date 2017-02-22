@@ -25,41 +25,32 @@
     <script>
       var server = 'http://parse.sfm6.hackreactor.com/mytunes/classes/songs';
       $(function() {
-        // set up model objects
+        // var library = new Songs();
+        // var app = new AppModel({library: library});
+        // var appView = new AppView({model: app});
+
+        // $('body').append(appView.render());
+        $.ajax({
+          url: server,
+          type: 'GET',
+          contentType: 'application/json',
+          success: function(data) {
+            console.log('data is received!', data.results);
+            var library = new Songs(data.results);
+            // console.log(library);
+            var app = new AppModel({library: library});
 
 
-        var library = new Songs();
+          // build a view for the top level of the whole app
+            var appView = new AppView({model: app});
 
-        var app = new AppModel({library: library});
-
-        var appView = new AppView({model: app});
-
-
-        //   // build a view for the top level of the whole app
-        //     var appView = new AppView({model: app});
-
-
-        // $.ajax({
-        //   url: server,
-        //   type: 'GET',
-        //   contentType: 'application/json',
-        //   success: function(data) {
-        //     console.log('data is received!', data.results);
-        //     var library = new Songs(data.results);
-        //     // console.log(library);
-        //     var app = new AppModel({library: library});
-
-
-        //   // build a view for the top level of the whole app
-        //     var appView = new AppView({model: app});
-
-        //   // put the view onto the screen
-        //     $('body').append(appView.render());
-        //   },
-        //   error: function() {
-        //     console.log('Cannot reach server!');
-        //   }
-        // });
+          // put the view onto the screen
+            $('body').append(appView.render());
+          },
+          error: function() {
+            console.log('Cannot reach server!');
+          }
+        });
       // Get songs from PARSE
 
       // make Songs from songs
