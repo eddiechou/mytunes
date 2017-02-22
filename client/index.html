@@ -28,8 +28,6 @@
         // var library = new Songs();
         // var app = new AppModel({library: library});
         // var appView = new AppView({model: app});
-
-        // $('body').append(appView.render());
         $.ajax({
           url: server,
           type: 'GET',
@@ -40,24 +38,16 @@
             // console.log(library);
             var app = new AppModel({library: library});
 
-
-          // build a view for the top level of the whole app
+            // build a view for the top level of the whole app
             var appView = new AppView({model: app});
 
-          // put the view onto the screen
+            // put the view onto the screen
             $('body').append(appView.render());
           },
           error: function() {
             console.log('Cannot reach server!');
           }
         });
-      // Get songs from PARSE
-
-      // make Songs from songs
-
-      // make library from Songs
-
-
       });
   </script>
 </body>
